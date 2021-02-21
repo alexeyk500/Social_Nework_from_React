@@ -14,7 +14,7 @@ const Content = () => {
       <ProFile />
       <MyPost />
       <Post message ='Hi, how are you?' />
-      <Post message ='Do you listen to my?'/>
+      <Post message ='Do you listen to me?'/>
       <Post message ='Why do you not answer?'/>
     </div>
   )

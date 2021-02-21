@@ -3,7 +3,7 @@ import classes from './MyPost.module.css';
 
 const MyPost = () => {
   return (
-    <div className={classes.header}>
+    <div className={classes.header + ' ' + classes.dialogsContainer}>
         My Post
     </div>
   )

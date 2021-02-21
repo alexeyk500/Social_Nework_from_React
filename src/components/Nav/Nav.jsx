@@ -6,10 +6,10 @@ const Nav = () => {
     <nav className={classes.nav}>
       <ul className={classes.navList}>
         <li>
-          <a className={classes.navLink} href="#">Profile</a>
+          <a className={`${classes.navLink} ${classes.active}`} href="#">Profile</a>
         </li>
         <li>
-          <a className={classes.navLink} href="#">Messages</a>
+          <a className={classes.navLink} href="#">Dialogs</a>
         </li>
         <li>
           <a className={classes.navLink} href="#">News</a>
