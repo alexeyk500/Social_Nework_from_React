@@ -1,0 +1,13 @@
+.nav {
+  grid-area: n;
+  background-color: rgb(38, 38, 105);
+}
+
+.navList {
+  list-style-type: none;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #CACACA
+}

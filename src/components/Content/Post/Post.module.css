@@ -1,0 +1,25 @@
+.postContainer {
+  padding-left: 45px;
+}
+
+.postHeader {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: #13e0d6;
+}
+
+.postText {
+  font-size: 20px;
+  padding-left: 20px;
+  color: #e0dc13;
+}
+
+.postText:after {
+  display: block;
+  content: '';
+  width: 50%;
+  height: 3px;
+  background-color: rgb(251, 26, 26);
+  margin-bottom: 5px;
+}
