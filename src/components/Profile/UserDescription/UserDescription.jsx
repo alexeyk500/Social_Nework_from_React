@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './ProFile.module.css'
+import classes from './UserDescription.module.css'
 
-const ProFile = () => {
+const UserDescription = () => {
   return (
     <div className={classes.header}>
         Ava + Description
@@ -9,4 +9,4 @@ const ProFile = () => {
   )
 }
 
-export default ProFile;
+export default UserDescription;
