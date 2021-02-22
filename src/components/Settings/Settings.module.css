@@ -1,0 +1,10 @@
+.header {
+  padding-left: 30px;
+  color: rgb(175, 42, 71);
+  font-weight: 600;
+}
+
+.container {
+  height: 100%;
+  background-color: #06a50e;
+}

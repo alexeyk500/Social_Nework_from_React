@@ -6,7 +6,7 @@ const Post = (props) => {
   return (
     <div className={classes.postContainer}>
         <h3 className={classes.postHeader}> Post </h3>
-        <span className={classes.postText}> {props.message} </span>
+        <span className={classes.postText}> {props.text} </span>
     </div>
   )
 }
