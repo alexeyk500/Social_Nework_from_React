@@ -6,6 +6,7 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <img className={classes.logoImg} src={logo} alt="this is logo" />
+      <span className={classes.title}>Lloret de Mar Private Social Nework</span>
     </header>
   )
 }

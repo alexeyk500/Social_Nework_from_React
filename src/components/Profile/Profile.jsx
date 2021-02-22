@@ -5,15 +5,10 @@ import MyPost  from './MyPost/MyPost';
 import Post    from './Post/Post';
 import UserDescription from './UserDescription/UserDescription';
 
-let postsData = [{postId:1, postText:'Hi, how are you?'},
-                 {postId:2, postText:'Do you listen to me?'},
-                 {postId:3, postText:'Why do you not answer?'},
-                 {postId:4, postText:'blablabla - bla'},
-];
+const Profile = (props) => {
 
-const postsElements = postsData.map(post=>(<Post text ={post.postText} />));
+  const postsElements = props.postsData.map(post=>(<Post text ={post.postText} />));
 
-const Profile = () => {
   return (
     <div className={classes.content}>
       <div>
