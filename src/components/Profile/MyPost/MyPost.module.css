@@ -1,4 +1,43 @@
-.header {
+.containerMyPost{
   padding-left: 30px;
-  color: rgb(173, 173, 173)
 }
+
+.header {
+  color: #5bfd4c;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.wrapperInputBlock {
+  width: 75%;
+  padding: 15px 15px;
+  border: 2px solid yellowgreen;
+  border-radius: 10px;
+}
+
+.textArea {
+  width: 96%;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 22px;
+  resize: none;
+  background-color: #aecaff;
+  border: none;
+  border-radius: 10px;
+}
+
+.wrapperButtonAdd {
+  text-align: right;
+}
+
+.buttonAdd {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #5bfd4c;
+  background-color: #0a33e6;
+  border-radius: 10px;
+
+}
+
+

@@ -15,7 +15,7 @@ const Profile = (props) => {
         <img src={beach} alt="this is beach" />
       </div>
       <UserDescription />
-      <MyPost />
+      <MyPost addPost={props.addPost} />
       {postsElements}
     </div>
   )
