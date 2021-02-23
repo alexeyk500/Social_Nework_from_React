@@ -1,3 +1,5 @@
+import {renderDOM} from './../render';
+
 let state = {
   profilePage: {
     posts: [{postId:1, postText:'Hi, how are you?'},
@@ -5,6 +7,7 @@ let state = {
             {postId:3, postText:'Why do you not answer?'},
             {postId:4, postText:'blablabla - blablabla'},
             ],
+    textNewPost: '',
   },
 
   dialogsPage :{
@@ -26,7 +29,13 @@ let state = {
 export let addPost = (postMessage) => {
   let newPost = {postId:5, postText:postMessage};
   state.profilePage.posts.push(newPost);
-  debugger;
+  state.profilePage.textNewPost = '';
+  renderDOM(state);
 };
+
+export let preSavePost = (text) => {
+  state.profilePage.textNewPost = text;
+  renderDOM(state);
+}
 
 export default state;

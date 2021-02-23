@@ -6,20 +6,17 @@ import Post    from './Post/Post';
 import UserDescription from './UserDescription/UserDescription';
 
 const Profile = (props) => {
-
-  const postsElements = props.postsData.map(post=>(<Post text ={post.postText} />));
-
+  const postsElements = props.profilePageData.posts.map(post=>(<Post text ={post.postText} />));
   return (
     <div className={classes.content}>
       <div>
         <img src={beach} alt="this is beach" />
       </div>
       <UserDescription />
-      <MyPost addPost={props.addPost} />
+      <MyPost textNewPost={props.profilePageData.textNewPost} addPost={props.addPost} preSavePost={props.preSavePost} />
       {postsElements}
     </div>
   )
 }
-
 
 export default Profile;
