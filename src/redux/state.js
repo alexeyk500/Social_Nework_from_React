@@ -1,3 +1,6 @@
+import profilePageReducer from './../redux/profilePage-reducer';
+import dialogsPageReducer from './../redux/dialogsPage-reducer';
+
 // actions constant
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -45,38 +48,10 @@ let store = {
 
   // dispatch
   dispatch(action){
-    if (action.type === ADD_POST){
-      let newPost = {postId:5, postText:this._state.profilePage.textNewPost};
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.textNewPost = '';
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.textNewPost = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogsPage.newMessageText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-      let newMessage = {messageId:4, messagetext:this._state.dialogsPage.newMessageText};
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action);
+    this._callSubscriber(this._state);
   }
-};
-
-// actions creators
-export const ADD_POST_CREATOR = () => {
-  return {type: ADD_POST};
-};
-export const UPDATE_NEW_POST_TEXT_CREATOR = (newText) => {
-  return {type:UPDATE_NEW_POST_TEXT, newText:newText};
-};
-export const UPDATE_NEW_MESSAGE_TEXT_CREATOR = (newText) => {
-  return {type:UPDATE_NEW_MESSAGE_TEXT, newText:newText};
-};
-export const SEND_MESSAGE_CREATOR = () => {
-  return {type:SEND_MESSAGE};
 };
 
 export default store;

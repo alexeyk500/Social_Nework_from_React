@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './MyPost.module.css';
-import {ADD_POST_CREATOR, UPDATE_NEW_POST_TEXT_CREATOR} from './../../../redux/state';
+import {ADD_POST_CREATOR, UPDATE_NEW_POST_TEXT_CREATOR} from './../../../redux/profilePage-reducer';
 
 const MyPost = (props) => {
 
