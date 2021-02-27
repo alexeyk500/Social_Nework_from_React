@@ -6,31 +6,21 @@ import App from './App';
 
 import store from './redux/state';
 
-
-let reRenderDOM = (store) => {
+// функция рендеринга страницы
+const reRenderDOM = (state) => {
   ReactDOM.render(
-    <React.StrictMode>
       <BrowserRouter>
-        <App state={store.getState()}
-             addPost={store.addPost.bind(store)}
-             preSavePost={store.preSavePost.bind(store)}/>
-      </BrowserRouter>
-    </React.StrictMode>, document.getElementById('root')
+        <App state={state}
+             dispatch={store.dispatch.bind(store)}
+             store={store}/>
+      </BrowserRouter>, document.getElementById('root')
   );
 };
 
-// let reRenderDOM = (store) => {
-//   ReactDOM.render(
-//     <React.StrictMode>
-//       <BrowserRouter>
-//         <App store={store}/>
-//       </BrowserRouter>
-//     </React.StrictMode>, document.getElementById('root')
-//   );
-// };
-
+// передаем в stor функцию отвественную за рендеринг страницы
 store.subscribe(reRenderDOM);
 
-reRenderDOM(store);
+// первый рендеринг старницы при запуске приложения
+reRenderDOM(store.getState());
 
 

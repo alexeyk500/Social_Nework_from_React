@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './MyPost.module.css';
+import {ADD_POST_CREATOR, UPDATE_NEW_POST_TEXT_CREATOR} from './../../../redux/state';
 
 const MyPost = (props) => {
 
@@ -7,12 +8,12 @@ let newPostElement = React.createRef();
 
 let addNewPost = () => {
   let text = newPostElement.current.value;
-  props.addPost(text);
+  props.dispatch(ADD_POST_CREATOR());
 }
 
 let preSaveNewPost = () => {
-  let text = newPostElement.current.value;
-  props.preSavePost(text);
+  let newText = newPostElement.current.value;
+  props.dispatch(UPDATE_NEW_POST_TEXT_CREATOR(newText));
 }
   return (
     <div className={classes.containerMyPost}>

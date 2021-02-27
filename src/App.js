@@ -18,15 +18,14 @@ const App = (props) =>{
         <div className='app-wrapper-content'>
 
           <Route path='/profile'
-                  render={() => <Profile
-                    profilePageData={props.state.profilePage}
-                    addPost={props.addPost}
-                    preSavePost={props.preSavePost} />}
+                  render={() => <Profile profilePageData={props.state.profilePage}
+                                         dispatch={props.dispatch} />}
           />
           <Route path='/dialogs'
-                  render={() => <Dialogs
-                    dialogsData={props.state.dialogsPage.dialogs}
-                    messagesData={props.state.dialogsPage.messages} />}
+                  render={() => <Dialogs state={props.state}
+                                         dispatch={props.dispatch}
+                                         store={props.store}/>}
+
           />
           <Route path='/news'     render={() => <News />} />
           <Route path='/music'    render={() => <Music />} />

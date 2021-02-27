@@ -10,10 +10,10 @@ const Profile = (props) => {
   return (
     <div className={classes.content}>
       <div>
-        <img src={beach} alt="this is beach" />
+        <img src={beach} alt="this is Lloret beach" />
       </div>
       <UserDescription />
-      <MyPost textNewPost={props.profilePageData.textNewPost} addPost={props.addPost} preSavePost={props.preSavePost} />
+      <MyPost textNewPost={props.profilePageData.textNewPost} dispatch={props.dispatch}/>
       {postsElements}
     </div>
   )
