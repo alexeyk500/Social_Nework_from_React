@@ -1,5 +1,5 @@
-import profilePageReducer from './../redux/profilePage-reducer';
-import dialogsPageReducer from './../redux/dialogsPage-reducer';
+import profilePageReducer from './profilePage-reducer';
+import dialogsPageReducer from './dialogsPage-reducer';
 
 // actions constant
 const ADD_POST = 'ADD-POST';

@@ -10,8 +10,25 @@ export const SEND_MESSAGE_CREATOR = () => {
   return {type:SEND_MESSAGE};
 };
 
+// Инициализационное состояние
+const initialState = {
+    dialogs: [{userId:1, userName:'Olga'},
+              {userId:2, userName:'Ivan'},
+              {userId:3, userName:'Kati'},
+              {userId:4, userName:'Ange'},
+              {userId:5, userName:'Iveya'},
+              {userId:6, userName:'Stepan'},
+              {userId:7, userName:'My'},
+            ],
+    messages: [{messageId:1, messagetext:'Hi'},
+              {messageId:2, messagetext:'How is your day?'},
+              {messageId:3, messagetext:'Will you come today?'},
+              ],
+    newMessageText: '',
+};
+
 // Выбор возможных действий
-const dialogsPageReducer = (state, action) => {
+const dialogsPageReducer = (state=initialState, action) => {
   switch(action.type) {
     case SEND_MESSAGE: {
       let newMessage = {messageId:4, messagetext:state.newMessageText};
