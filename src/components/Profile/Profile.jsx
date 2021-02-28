@@ -1,19 +1,23 @@
 import React   from 'react';
 import beach   from './../../img/lloret.jpg';
 import classes from './Profile.module.css';
-import MyPost  from './MyPost/MyPost';
 import Post    from './Post/Post';
 import UserDescription from './UserDescription/UserDescription';
+import MyPostContainer from './MyPost/MyPostContainer';
 
 const Profile = (props) => {
-  const postsElements = props.profilePageData.posts.map(post=>(<Post text ={post.postText} />));
+
+  // Получаем состояние и фомаруем из него массив компонент с постами
+  const state = props.store.getState();
+  const postsElements = state.profilePage.posts.map(post=>(<Post text ={post.postText} />));
+
   return (
     <div className={classes.content}>
       <div>
         <img src={beach} alt="this is Lloret beach" />
       </div>
       <UserDescription />
-      <MyPost textNewPost={props.profilePageData.textNewPost} dispatch={props.dispatch}/>
+      <MyPostContainer store={props.store}/>
       {postsElements}
     </div>
   )
