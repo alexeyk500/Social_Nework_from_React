@@ -1,0 +1,67 @@
+.userTitle {
+  margin-top: 25px;
+  padding-left: 25px;
+  margin-bottom: 25px;
+  font-size: 35px;
+  color:rgb(157, 192, 88)
+}
+
+.userContainer {
+  display: flex;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  align-items: center;
+  border: 3
+}
+
+.redLine {
+  display: block;
+  content: '';
+  width: 95%;
+  margin: 0px auto;
+  height: 3px;
+  background-color: rgb(251, 26, 26);
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 70px;
+  border-radius: 50%;
+}
+
+.leftColumn {
+  width: 15%;
+  text-align: center;
+  margin-right: 25px;
+}
+.righColumn {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 35px;
+  padding: 20px 20px;
+  justify-content: space-between;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+}
+
+.userSatus {
+  color:rgb(50, 205, 146);
+  font-size: 20px;
+}
+
+.userName {
+  color:rgb(50, 205, 205);
+  font-size: 32px;
+}
+
+.buttonFollow {
+  width: 100%;
+  color:#fffd79;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  border: none;
+  border-radius: 10px;
+  background-color:  rgb(58, 71, 190);
+}

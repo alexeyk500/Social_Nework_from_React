@@ -1,7 +1,10 @@
 import React from 'react';
+import Post    from './../Post/Post';
 import classes from './MyPost.module.css';
 
 const MyPost = (props) => {
+
+  const postsElements = props.posts.map(post=>(<Post text ={post.postText} key={post.id}/>));
 
   return (
     <div className={classes.containerMyPost}>
@@ -17,6 +20,7 @@ const MyPost = (props) => {
             <button className={classes.buttonAdd} onClick={props.addNewPost}>Опубликовать</button>
           </div>
         </div>
+        {postsElements}
       </div>
     </div>
   )

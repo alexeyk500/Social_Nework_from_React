@@ -2,48 +2,48 @@ import React from 'react';
 import Dialogs from './Dialogs';
 import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
+import {connect} from 'react-redux';
 import {SEND_MESSAGE_CREATOR, UPDATE_NEW_MESSAGE_TEXT_CREATOR} from './../../redux/dialogsPage-reducer';
 
+// компонента для создания NavLink
 const NavLinkNav = (props) => {
   return <NavLink className={classes.dialogLink} to={'/dialogs/'+props.userId}>{props.userName}</NavLink>
 };
-
+// компонета для отображения текста сообщения
 const Message = (props) => {
   return <p className={classes.messageText}>{props.messageText}</p>
 };
 
-const DialogsContainer = (props) => {
-  // получение текущего state
-  const state = props.store.getState()
+// Функция для формирования данных из state передаваемых в компоненту
+const mapStateToProps = (state) =>{
   // преобразование в массив компонент далогов с пользоателями
   const dialogsElements=state.dialogsPage.dialogs.map( dialog => (<li className="dialogsListItem">
-                                                      <NavLinkNav userName={dialog.userName} userId={dialog.userId} />
+                                                      <NavLinkNav userName={dialog.userName} key={dialog.id} userId={dialog.userId} />
                                                     </li>)
   );
   // преобразование в массив компонент сообщений в диалоге
-  let messagesElements=state.dialogsPage.messages.map(message => (<li className="messageItem">
-                                                      <Message messageText={message.messagetext} />
+  const messagesElements=state.dialogsPage.messages.map(message => (<li className="messageItem">
+                                                      <Message messageText={message.messagetext} key={message.id}/>
                                                       </li>)
-  )
-
-  // Получаем из текст вводимого сообщения для texearea
-  let newMessageText = state.dialogsPage.newMessageText;
+  );
+  // Получаем текст вводимого сообщения для texearea
+  const newMessageText = state.dialogsPage.newMessageText;
+  return {dialogsElements, messagesElements, newMessageText}
+};
+// Функция для передачи коллбэков в компоненту
+const mapDispatchToProps = (dispatch) =>{
   // Обработчик нажатия на кнопку Send
-  const SendMesageButtonClick = () => {
-    props.store.dispatch(SEND_MESSAGE_CREATOR())
+  const onSendMesageButtonClick = () => {
+    dispatch(SEND_MESSAGE_CREATOR());
   };
   // Обработчик ввода в textarea
-  const ChangeNewMessageText = (e) => {
+  const onChangeNewMessageText = (e) => {
     const NewMessageText = e.target.value;
-    props.store.dispatch(UPDATE_NEW_MESSAGE_TEXT_CREATOR(NewMessageText))
-  }
-  // основная сборка компоненты Dialogs
-  return ( <Dialogs onSendMesageButtonClick = {SendMesageButtonClick}
-                    onChangeNewMessageText = {ChangeNewMessageText}
-                    newMessageText = {newMessageText}
-                    dialogsElements ={dialogsElements}
-                    messagesElements = {messagesElements}/>
-  )
-}
+    dispatch(UPDATE_NEW_MESSAGE_TEXT_CREATOR(NewMessageText));
+  };
+  return {onSendMesageButtonClick:onSendMesageButtonClick, onChangeNewMessageText:onChangeNewMessageText}
+};
 
-export default DialogsContainer;
+const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+export default SuperDialogsContainer;

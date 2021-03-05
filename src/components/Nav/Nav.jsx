@@ -24,6 +24,12 @@ const Nav = () => {
         </li>
           <br/>
         <li>
+        <li>
+          <NavLinkTo item='Finde User' to='/users' />
+        </li>
+        </li>
+          <br/>
+        <li>
           <NavLinkTo item='Settings' to='/settings' />
         </li>
       </ul>
