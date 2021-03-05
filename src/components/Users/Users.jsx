@@ -29,8 +29,8 @@ class Users extends React.Component {
                 </div>
                 <div className={classes.buttonWrapper}>
                   {user.followed
-                    ? <button onClick = { ()=>{this.props.unfollow(user.userId)} } className={classes.buttonFollow}>Follow</button>
-                    : <button onClick = { ()=>{this.props.follow(user.userId)} }   className={classes.buttonFollow}>UnFollow</button>
+                    ? <button onClick = { ()=>{this.props.unfollow(user.id)} } className={classes.buttonFollow}>Follow</button>
+                    : <button onClick = { ()=>{this.props.follow(user.id)} }   className={classes.buttonFollow}>UnFollow</button>
                   }
                 </div>
               </div>

@@ -25,7 +25,7 @@ const Nav = () => {
           <br/>
         <li>
         <li>
-          <NavLinkTo item='Finde User' to='/users' />
+          <NavLinkTo item='Find User' to='/users' />
         </li>
         </li>
           <br/>

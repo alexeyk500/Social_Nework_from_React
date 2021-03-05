@@ -6,36 +6,18 @@ const SET_USERS = 'SET_USERS';
 // Инициализационное состояние
 const initialState = {
   users:[],
-  // users:[
-  //   { userId:1,
-  //     userAvatar: './../img/Bruce.jpg',
-  //     userName:'Ivan',
-  //     userStatus:'I am a boss',
-  //     userLocation: {country:'Russia', city:'Moscow'},
-  //     followed: false,
+  // item
+  // {
+  //   "name": "vladislav13",
+  //   "id": 15495,
+  //   "uniqueUrlName": null,
+  //   "photos": {
+  //     "small": null,
+  //     "large": null
   //   },
-  //   { userId:2,
-  //     userAvatarPath: './../img/Bruce.jpg',
-  //     userName:'Olga',
-  //     userStatus:'Tell me whay?',
-  //     userLocation: {country:'Belarus', city:'Minsk'},
-  //     followed: true,
-  //   },
-  //   { userId:3,
-  //     userAvatar: './../img/Bruce.jpg',
-  //     userName:'Arnold',
-  //     userStatus:'Who am I?',
-  //     userLocation: {country:'Austria', city:'Viena'},
-  //     followed: true,
-  //   },
-  //   { userId:4,
-  //     userAvatar: './../img/Bruce.jpg',
-  //     userName:'Iveya',
-  //     userStatus:'cut gerl )))',
-  //     userLocation: {country:'Russia', city:'Piter'},
-  //     followed: false,
-  //   },
-  // ],
+  //   "status": null,
+  //   "followed": false
+  // }
 };
 
 // Выбор возможных действий
@@ -45,7 +27,7 @@ export const userPageReducer = (state=initialState, action) => {
       return {
         ...state,
         users: state.users.map(curUser => {
-          if (curUser.userId === action.userId) {
+          if (curUser.id === action.id) {
             return {...curUser, followed: true}
           }
           return curUser
@@ -56,7 +38,7 @@ export const userPageReducer = (state=initialState, action) => {
       return {
         ...state,
         users: state.users.map(curUser => {
-          if (curUser.userId === action.userId) {
+          if (curUser.id === action.id) {
             return {...curUser, followed: false}
           }
           return curUser
@@ -65,7 +47,7 @@ export const userPageReducer = (state=initialState, action) => {
     }
     case SET_USERS: {
       return {
-        ...state, users: [ ...state.users, ...action.users ]
+        ...state, users: [ ...action.users ]
       }
     }
     default: return state;
@@ -74,8 +56,8 @@ export const userPageReducer = (state=initialState, action) => {
 };
 
 // actions creators
-export const follow_AC   = (userId) => {return {type:FOLLOW,    userId}};
-export const unfollow_AC = (userId) => {return {type:UNFOLLOW,  userId}};
+export const follow_AC   = (id) => {return {type:FOLLOW,    id}};
+export const unfollow_AC = (id) => {return {type:UNFOLLOW,  id}};
 export const setUsers_AC = (users)  => {return {type:SET_USERS, users}}
 
 export default userPageReducer;
