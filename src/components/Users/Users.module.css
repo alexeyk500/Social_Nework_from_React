@@ -65,3 +65,15 @@
   border-radius: 10px;
   background-color:  rgb(58, 71, 190);
 }
+
+.numPage {
+  margin-right: 10px;
+  font-size: 32px;
+}
+
+.selectedPage {
+  margin-right: 10px;
+  color:blue;
+  font-size: 40px;
+  font-weight: 600;
+}

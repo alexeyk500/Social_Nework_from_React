@@ -2,21 +2,33 @@
 const FOLLOW    = 'FOLLOW';
 const UNFOLLOW  = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT';
 
 // Инициализационное состояние
 const initialState = {
   users:[],
-  // item
+  pageSize: 10,
+  totalUsersCount: 0,
+  currentPage: 1,
+
+  // https://social-network.samuraijs.com/api/1.0/users?page=2540&count=1
   // {
-  //   "name": "vladislav13",
-  //   "id": 15495,
-  //   "uniqueUrlName": null,
-  //   "photos": {
-  //     "small": null,
-  //     "large": null
-  //   },
-  //   "status": null,
-  //   "followed": false
+  //   "items": [
+  //     {
+  //       "name": "BoB",
+  //       "id": 12977,
+  //       "uniqueUrlName": null,
+  //       "photos": {
+  //         "small": null,
+  //         "large": null
+  //       },
+  //       "status": null,
+  //       "followed": false
+  //     }
+  //   ],
+  //   "totalCount": 10524,
+  //   "error": null
   // }
 };
 
@@ -47,8 +59,15 @@ export const userPageReducer = (state=initialState, action) => {
     }
     case SET_USERS: {
       return {
-        ...state, users: [ ...action.users ]
+        ...state, users: action.users
       }
+    }
+    case SET_CURRENT_PAGE: {
+      return { ...state, currentPage: action.currentPage}
+    }
+    case SET_TOTAL_USER_COUNT: {
+      return { ...state, totalUsersCount: action.totalUserCount}
+
     }
     default: return state;
   }
@@ -58,6 +77,8 @@ export const userPageReducer = (state=initialState, action) => {
 // actions creators
 export const follow_AC   = (id) => {return {type:FOLLOW,    id}};
 export const unfollow_AC = (id) => {return {type:UNFOLLOW,  id}};
-export const setUsers_AC = (users)  => {return {type:SET_USERS, users}}
+export const setUsers_AC = (users)  => {return {type:SET_USERS, users}};
+export const setCurrentPage_AC = (currentPage)  => {return {type:SET_CURRENT_PAGE, currentPage}};
+export const setTotalUsersCount_AC = (totalUserCount) => {return {type:SET_TOTAL_USER_COUNT, totalUserCount}}
 
 export default userPageReducer;
