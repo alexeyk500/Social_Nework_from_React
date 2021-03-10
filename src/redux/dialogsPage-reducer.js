@@ -2,14 +2,6 @@
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-// actions creators
-export const UPDATE_NEW_MESSAGE_TEXT_CREATOR = (newText) => {
-  return {type:UPDATE_NEW_MESSAGE_TEXT, newText:newText};
-};
-export const SEND_MESSAGE_CREATOR = () => {
-  return {type:SEND_MESSAGE};
-};
-
 // Инициализационное состояние
 const initialState = {
     dialogs: [{userId:1, userName:'Olga'},
@@ -45,6 +37,14 @@ const dialogsPageReducer = (state=initialState, action) => {
     }
     default: return state;
   }
+};
+
+// actions creators
+export const UPDATE_NEW_MESSAGE_TEXT_CREATOR = (newText) => {
+  return {type:UPDATE_NEW_MESSAGE_TEXT, newText:newText};
+};
+export const SEND_MESSAGE_CREATOR = () => {
+  return {type:SEND_MESSAGE};
 };
 
 export default dialogsPageReducer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Users.module.css';
 import logoAvatar from './../../assets/img/user.png';
+import { NavLink } from 'react-router-dom';
 
 let Users = (props) => {
 
@@ -29,11 +30,14 @@ let Users = (props) => {
             <div className={classes.userContainer} key={user.id}>
             <div className={classes.leftColumn}>
               <div className={classes.avatarWrapper}>
-                <img
-                  className={classes.avatar}
-                  src={ user.photos.small != null ? user.photos.small: logoAvatar}
-                  alt=""
-                />
+                <NavLink to ={'profile/'+user.id}>
+                  <img
+                    className={classes.avatar}
+                    src={ user.photos.small != null ? user.photos.small: logoAvatar}
+                    alt=""
+                  />
+                </NavLink>
+
               </div>
               <div className={classes.buttonWrapper}>
                 {user.followed

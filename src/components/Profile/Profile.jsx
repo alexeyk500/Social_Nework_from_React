@@ -5,13 +5,12 @@ import UserDescription from './UserDescription/UserDescription';
 import MyPostContainer from './MyPost/MyPostContainer';
 
 const Profile = (props) => {
-
   return (
     <div className={classes.content}>
       <div>
         <img src={beach} alt="this is Lloret beach" />
       </div>
-      <UserDescription />
+      <UserDescription profile={props.profile} />
       <MyPostContainer />
     </div>
   )

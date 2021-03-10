@@ -2,3 +2,27 @@
   font-size: 32px;
   color: rgb(8, 12, 243);
 }
+
+.descriptionWrapper {
+  padding-top: 15px;
+  padding-left: 15px;
+  display: flex;
+}
+
+.descriptionText{
+  padding-left: 35px;
+  padding-top: 15px;
+}
+
+.name {
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: rgb(8, 12, 243);
+}
+
+.avatar {
+  margin-left: 30px;
+  width: 100px;
+  vertical-align: middle;
+  border-radius: 50px;
+}
