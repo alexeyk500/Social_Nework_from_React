@@ -1,5 +1,5 @@
 import React   from 'react';
-import beach   from './../../img/lloret.jpg';
+import beach   from './../../assets/img/lloret.jpg'
 import classes from './Profile.module.css';
 import UserDescription from './UserDescription/UserDescription';
 import MyPostContainer from './MyPost/MyPostContainer';
