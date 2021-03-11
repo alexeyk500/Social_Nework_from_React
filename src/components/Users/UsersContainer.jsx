@@ -55,7 +55,6 @@ class UsersAPI extends React.Component {
   }
 };
 
-export default connect(
-  mapStateToProps,
-  {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching},
-  )(UsersAPI);
+export default connect(mapStateToProps,
+                       {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching},
+                      )(UsersAPI);
