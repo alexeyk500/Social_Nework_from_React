@@ -5,6 +5,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT';
 const SET_IS_FETCHING = 'SET_IS_FETCHING';
+const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
 
 // Инициализационное состояние
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
+  isFollowingInProgress: [],
 
   // https://social-network.samuraijs.com/api/1.0/users?page=2540&count=1
   // {
@@ -73,6 +75,14 @@ export const userPageReducer = (state=initialState, action) => {
     case SET_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching}
     };
+    case FOLLOWING_IN_PROGRESS: {
+      return {
+        ...state,
+        isFollowingInProgress: action.isFetching
+        ? [...state.isFollowingInProgress, action.userId]
+        : state.isFollowingInProgress.filter(id => id != action.userId)
+      }
+    };
     default: return state;
   }
 };
@@ -83,6 +93,7 @@ export const unfollow = (id) => {return {type:UNFOLLOW,  id}};
 export const setUsers = (users)  => {return {type:SET_USERS, users}};
 export const setCurrentPage = (currentPage)  => {return {type:SET_CURRENT_PAGE, currentPage}};
 export const setTotalUsersCount = (totalUserCount) => {return {type:SET_TOTAL_USER_COUNT, totalUserCount}};
-export const setIsFetching = (isFetching) => {return {type:SET_IS_FETCHING, isFetching}}
+export const setIsFetching = (isFetching) => {return {type:SET_IS_FETCHING, isFetching}};
+export const setFollowingInProgress = (isFetching, userId) => {return {type:FOLLOWING_IN_PROGRESS, isFetching, userId}};
 
 export default userPageReducer;

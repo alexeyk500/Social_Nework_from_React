@@ -66,6 +66,11 @@
   background-color:  #3a47be;
 }
 
+.buttonFollow[disabled] {
+  background-color:  #98999c;
+}
+
+
 .numPage {
   margin-right: 10px;
   font-size: 32px;

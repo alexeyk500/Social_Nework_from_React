@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './Users.module.css';
+import {serverApi} from './../../api/api';
+import * as axios from 'axios';
 import logoAvatar from './../../assets/img/user.png';
 import { NavLink } from 'react-router-dom';
 
@@ -40,9 +42,29 @@ let Users = (props) => {
 
               </div>
               <div className={classes.buttonWrapper}>
-                {user.followed
-                  ? <button onClick = { ()=>{props.unfollow(user.id)} } className={classes.buttonFollow}>Follow</button>
-                  : <button onClick = { ()=>{props.follow(user.id)} }   className={classes.buttonFollow}>UnFollow</button>
+                {user.followed ?
+                  <button disabled={props.isFollowingInProgress.some(id=>id===user.id)} onClick = { ()=>{
+                      props.setFollowingInProgress(true, user.id);
+                      serverApi.unfollowUser(user.id)
+                      .then(data =>{
+                        if (data.resultCode === 0) {
+                          props.unfollow(user.id)
+                        }
+                        props.setFollowingInProgress(false, user.id);
+                      })
+                      }
+                    } className={classes.buttonFollow}>Follow</button>
+                  : <button disabled={props.isFollowingInProgress.some(id=>id===user.id)}  onClick = { ()=>{
+                    props.setFollowingInProgress(true, user.id);
+                    serverApi.followUser(user.id)
+                      .then(data =>{
+                        if (data.resultCode === 0) {
+                          props.follow(user.id)
+                        }
+                        props.setFollowingInProgress(false, user.id);
+                      })
+                    }
+                    } className={classes.buttonFollow}>UnFollow</button>
                 }
               </div>
             </div>

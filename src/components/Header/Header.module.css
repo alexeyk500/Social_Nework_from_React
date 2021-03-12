@@ -12,10 +12,24 @@
   border-radius: 25px;
 }
 
-.title{
+.title {
   margin-left: auto;
   margin-right: auto;
   color: #fffd79;
   font-size: 32px;
   font-weight: 500;
+}
+
+.loginBlock {
+  float: right;
+  padding-right: 50px;
+}
+
+.loginNavLink {
+  color: #fffd79;
+}
+
+.loginText {
+  font-size: 36px;
+  color: #7aff81;
 }
