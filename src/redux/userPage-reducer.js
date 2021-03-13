@@ -1,3 +1,5 @@
+import {serverApi} from './../api/api';
+
 // actions constant
 const FOLLOW    = 'FOLLOW';
 const UNFOLLOW  = 'UNFOLLOW';
@@ -88,12 +90,51 @@ export const userPageReducer = (state=initialState, action) => {
 };
 
 // actions creators
-export const follow   = (id) => {return {type:FOLLOW,    id}};
-export const unfollow = (id) => {return {type:UNFOLLOW,  id}};
+export const followStatus   = (id) => {return {type:FOLLOW,    id}};
+export const unfollowStatus = (id) => {return {type:UNFOLLOW,  id}};
 export const setUsers = (users)  => {return {type:SET_USERS, users}};
 export const setCurrentPage = (currentPage)  => {return {type:SET_CURRENT_PAGE, currentPage}};
 export const setTotalUsersCount = (totalUserCount) => {return {type:SET_TOTAL_USER_COUNT, totalUserCount}};
 export const setIsFetching = (isFetching) => {return {type:SET_IS_FETCHING, isFetching}};
 export const setFollowingInProgress = (isFetching, userId) => {return {type:FOLLOWING_IN_PROGRESS, isFetching, userId}};
+
+//thunks
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+    serverApi.getUsers(currentPage, pageSize)
+      .then(data =>{
+        dispatch(setIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
+      });
+  };
+};
+
+export const follow = (userId) => {
+  return (dispatch) => {
+    dispatch(setFollowingInProgress(true, userId));
+    serverApi.unfollowUser(userId)
+    .then(data =>{
+      if (data.resultCode === 0) {
+        dispatch(unfollowStatus(userId))
+      }
+      dispatch(setFollowingInProgress(false, userId));
+    })
+  };
+}
+
+export const unfollow = (userId) => {
+  return (dispatch) => {
+    dispatch(setFollowingInProgress(true, userId));
+    serverApi.followUser(userId)
+    .then(data =>{
+      if (data.resultCode === 0) {
+        dispatch(followStatus(userId))
+      }
+      dispatch(setFollowingInProgress(false, userId));
+    })
+  };
+}
 
 export default userPageReducer;

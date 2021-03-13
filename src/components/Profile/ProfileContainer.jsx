@@ -26,7 +26,6 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   let prof = state.profilePage.profile;
-  console.log(prof)
   return {
     profile: prof,
   }
