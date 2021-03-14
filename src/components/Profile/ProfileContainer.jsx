@@ -25,7 +25,9 @@ const mapStateToProps = (state) => {
   let prof = state.profilePage.profile;
   return {
     profile: prof,
+    isAuthoraised: state.auth.isAuthoraised,
   }
+
 };
 
 const withURLProfileContainer = withRouter(ProfileContainer);

@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import classes from './Dialogs.module.css';
-import {SEND_MESSAGE, UPDATE_NEW_MESSAGE_TEXT} from './../../redux/dialogsPage-reducer';
-
 
 const Dialogs = (props) => {
+  // проверка на авторизованность
+  if (!props.isAuthoraised) return <Redirect to='/login' />
   // основная сборка компоненты Dialogs
   return (
     < div className={classes.dialogsContainer}>

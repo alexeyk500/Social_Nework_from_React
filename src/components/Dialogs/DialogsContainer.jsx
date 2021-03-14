@@ -28,9 +28,12 @@ const mapStateToProps = (state) =>{
   );
   // Получаем текст вводимого сообщения для texearea
   const newMessageText = state.dialogsPage.newMessageText;
-  return {dialogsElements, messagesElements, newMessageText}
+  // передаем состояние авторизованности
+  const isAuthoraised = state.auth.isAuthoraised;
+  return {dialogsElements, messagesElements, newMessageText, isAuthoraised}
 };
-// Функция для передачи коллбэков в компоненту
+
+// Функция для передачи колбэков в компоненту
 const mapDispatchToProps = (dispatch) =>{
   // Обработчик нажатия на кнопку Send
   const onSendMesageButtonClick = () => {

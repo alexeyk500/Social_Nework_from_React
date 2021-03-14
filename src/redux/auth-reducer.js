@@ -10,7 +10,7 @@ const initialState = {
   login: null,
   isAuthoraised: false,
 
-  // https://social-network.samuraijs.com/api/1.0//auth/me
+  // https://social-network.samuraijs.com/api/1.0/auth/me
   // {
   //   "data": {
   //   "id": 15662,
