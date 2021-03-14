@@ -8,6 +8,13 @@ const instanceAxios = axios.create({
 
 export const serverApi = {
 
+  authoraise_me() {
+    return instanceAxios.get(`auth/me`)
+    .then(response =>{
+      return response.data
+    })
+  },
+
   getUsers(pageNum, pageSize) {
     return instanceAxios.get(`users?page=${pageNum}&count=${pageSize}`)
     .then(response =>{
@@ -28,5 +35,12 @@ export const serverApi = {
       return response.data
     })
   },
+
+  getProfile(userId) {
+    return instanceAxios.get(`profile/${userId}`)
+    .then(response =>{
+      return(response.data);
+    })
+  }
 
 };

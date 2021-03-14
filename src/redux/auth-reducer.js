@@ -1,3 +1,5 @@
+import {serverApi} from './../api/api'
+
 // actions constant
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -34,6 +36,18 @@ export const authReducer = (state=initialState, action) => {
 };
 
 // actions creators
-export const setAuthUsersData = (id, email, login)  => ({type:SET_USER_DATA, userData: {id, email, login}});
+const setAuthUsersData = (id, email, login)  => ({type:SET_USER_DATA, userData: {id, email, login}});
+
+//thunk
+export const setAuthoraisedUsersData = () => {
+  return(dispatch) => {
+    serverApi.authoraise_me().then(response =>{
+      if (response.resultCode === 0) {
+        let {id, login, email} = response.data;
+        dispatch(setAuthUsersData(id, email, login));
+      }
+    })
+  }
+};
 
 export default authReducer;

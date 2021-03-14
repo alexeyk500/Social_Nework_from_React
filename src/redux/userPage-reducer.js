@@ -103,12 +103,12 @@ export const getUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
     serverApi.getUsers(currentPage, pageSize)
-      .then(data =>{
-        dispatch(setIsFetching(false));
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsersCount(data.totalCount));
-      });
-  };
+    .then(data =>{
+      dispatch(setIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    })
+  }
 };
 
 export const follow = (userId) => {
@@ -121,8 +121,8 @@ export const follow = (userId) => {
       }
       dispatch(setFollowingInProgress(false, userId));
     })
-  };
-}
+  }
+};
 
 export const unfollow = (userId) => {
   return (dispatch) => {
@@ -134,7 +134,7 @@ export const unfollow = (userId) => {
       }
       dispatch(setFollowingInProgress(false, userId));
     })
-  };
-}
+  }
+};
 
 export default userPageReducer;
