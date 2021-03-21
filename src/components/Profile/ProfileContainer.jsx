@@ -1,9 +1,10 @@
 import React   from 'react';
+import { compose } from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import Profile from './Profile';
 import {getUserProfile} from './../../redux/profilePage-reducer';
-import {withAuthRdirect} from './../../hoc/withAuthRedirect'
+import {withAuthRedirect} from './../../hoc/withAuthRedirect'
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -21,17 +22,12 @@ class ProfileContainer extends React.Component {
   }
 };
 
-// HOC на авторизованность пользователя
-const AuthRedirectComponent = withAuthRdirect(ProfileContainer)
-
-const mapStateToProps = (state) => {
-  let prof = state.profilePage.profile;
-  return {
-    profile: prof,
-  }
-
+const mapStateToProps = (state) =>{
+  return {profile: state.profilePage.profile}
 };
 
-const withURLProfileContainer = withRouter(AuthRedirectComponent);
-
-export default connect(mapStateToProps, {getUserProfile})(withURLProfileContainer);
+export default compose(
+  withRouter,
+  withAuthRedirect,
+  connect(mapStateToProps, {getUserProfile})
+  )(ProfileContainer)
