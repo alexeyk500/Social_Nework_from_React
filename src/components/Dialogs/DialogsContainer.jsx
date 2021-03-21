@@ -4,6 +4,7 @@ import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {SEND_MESSAGE_CREATOR, UPDATE_NEW_MESSAGE_TEXT_CREATOR} from './../../redux/dialogsPage-reducer';
+import { withAuthRdirect } from '../../hoc/withAuthRedirect';
 
 // компонента для создания NavLink
 const NavLinkNav = (props) => {
@@ -28,9 +29,7 @@ const mapStateToProps = (state) =>{
   );
   // Получаем текст вводимого сообщения для texearea
   const newMessageText = state.dialogsPage.newMessageText;
-  // передаем состояние авторизованности
-  const isAuthoraised = state.auth.isAuthoraised;
-  return {dialogsElements, messagesElements, newMessageText, isAuthoraised}
+  return {dialogsElements, messagesElements, newMessageText}
 };
 
 // Функция для передачи колбэков в компоненту
@@ -47,6 +46,9 @@ const mapDispatchToProps = (dispatch) =>{
   return {onSendMesageButtonClick:onSendMesageButtonClick, onChangeNewMessageText:onChangeNewMessageText}
 };
 
-const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+// HOC на авторизованность пользователя
+const AuthRedirectComponent = withAuthRdirect(Dialogs)
+
+const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 
 export default SuperDialogsContainer;

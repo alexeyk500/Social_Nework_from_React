@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import Profile from './Profile';
 import {getUserProfile} from './../../redux/profilePage-reducer';
-//import {serverApi} from './../../api/api'
+import {withAuthRdirect} from './../../hoc/withAuthRedirect'
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -21,15 +21,17 @@ class ProfileContainer extends React.Component {
   }
 };
 
+// HOC на авторизованность пользователя
+const AuthRedirectComponent = withAuthRdirect(ProfileContainer)
+
 const mapStateToProps = (state) => {
   let prof = state.profilePage.profile;
   return {
     profile: prof,
-    isAuthoraised: state.auth.isAuthoraised,
   }
 
 };
 
-const withURLProfileContainer = withRouter(ProfileContainer);
+const withURLProfileContainer = withRouter(AuthRedirectComponent);
 
 export default connect(mapStateToProps, {getUserProfile})(withURLProfileContainer);

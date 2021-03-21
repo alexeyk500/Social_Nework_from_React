@@ -1,11 +1,7 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import classes from './Dialogs.module.css';
 
 const Dialogs = (props) => {
-  // проверка на авторизованность
-  if (!props.isAuthoraised) return <Redirect to='/login' />
-  // основная сборка компоненты Dialogs
   return (
     < div className={classes.dialogsContainer}>
       <div className={classes.dialogsHeader}>
