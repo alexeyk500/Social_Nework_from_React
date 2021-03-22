@@ -2,6 +2,7 @@ import React   from 'react';
 import beach   from './../../assets/img/lloret.jpg'
 import classes from './Profile.module.css';
 import UserDescription from './UserDescription/UserDescription';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 import MyPostContainer from './MyPost/MyPostContainer';
 
 const Profile = (props) => {
@@ -11,6 +12,7 @@ const Profile = (props) => {
         <img src={beach} alt="this is Lloret beach" />
       </div>
       <UserDescription profile={props.profile} />
+      <ProfileStatus status='Hellow my friends'/>
       <MyPostContainer />
     </div>
   )
