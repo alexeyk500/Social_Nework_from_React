@@ -12,7 +12,7 @@ const Profile = (props) => {
         <img src={beach} alt="this is Lloret beach" />
       </div>
       <UserDescription profile={props.profile} />
-      <ProfileStatus status='Hellow my friends'/>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       <MyPostContainer />
     </div>
   )

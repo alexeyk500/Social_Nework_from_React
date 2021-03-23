@@ -4,6 +4,7 @@ import {serverApi} from './../api/api'
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 // Инициализационное состояние
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
             ],
     textNewPost: '',
     profile: null,
+    status: '',
 };
 
 // Выбор возможных действий
@@ -37,6 +39,13 @@ export const profilePageReducer = (state=initialState, action) => {
     case SET_USER_PROFILE: {
       return { ...state, profile: action.profile}
     };
+
+    case SET_STATUS: {
+      if (action.status !== null) {
+        return { ...state, status: action.status}
+      }
+    };
+
     default: return state;
   }
 };
@@ -45,6 +54,7 @@ export const profilePageReducer = (state=initialState, action) => {
 export const ADD_POST_CREATOR = () => { return{type: ADD_POST} };
 export const UPDATE_NEW_POST_TEXT_CREATOR = (newText) => { return{type:UPDATE_NEW_POST_TEXT, newText:newText} };
 const setUserProfile = (profile) => { return{type: SET_USER_PROFILE, profile} };
+const setStatus = (status) => { return{type: SET_STATUS, status} };
 
 //thunk
 export const getUserProfile = (userId) => {
@@ -56,5 +66,25 @@ export const getUserProfile = (userId) => {
   }
 };
 
+export const getStatus = (userId) => {
+  return (dispatch) => {
+    serverApi.getStatus(userId)
+    .then(response =>{
+      dispatch(setStatus(response));
+    })
+  }
+};
+
+export const updateStatus = (status) => {
+  return (dispatch) => {
+    serverApi.updateStatus(status)
+    .then(response =>{
+      if (response.resultCode === 0) {
+         debugger;
+        dispatch(setStatus(status));
+      }
+    })
+  }
+};
 
 export default profilePageReducer;

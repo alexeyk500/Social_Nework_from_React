@@ -41,6 +41,20 @@ export const serverApi = {
     .then(response =>{
       return(response.data);
     })
-  }
+  },
+
+  getStatus(userId) {
+    return instanceAxios.get(`profile/status/${userId}`)
+    .then(response =>{
+      return(response.data);
+    })
+  },
+
+  updateStatus(status) {
+    return instanceAxios.put(`profile/status`,{status: status})
+    .then(response =>{
+      return(response.data);
+    })
+  },
 
 };
