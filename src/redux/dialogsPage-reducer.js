@@ -1,6 +1,5 @@
 // actions constant
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const ADD_MESSAGE = 'ADD-MESSAGE';
 
 // Инициализационное состояние
 const initialState = {
@@ -13,26 +12,18 @@ const initialState = {
               {userId:7, userName:'My'},
             ],
     messages: [{messageId:1, messagetext:'Hi'},
-              {messageId:2, messagetext:'How is your day?'},
-              {messageId:3, messagetext:'Will you come today?'},
+               {messageId:2, messagetext:'How is your day?'},
+               {messageId:3, messagetext:'Will you come today?'},
               ],
-    newMessageText: '',
 };
 
 // Выбор возможных действий
 const dialogsPageReducer = (state=initialState, action) => {
   switch(action.type) {
-    case SEND_MESSAGE: {
+    case ADD_MESSAGE: {
       return {
         ...state,
-        newMessageText: '',
-        messages: [...state.messages, {messageId:4, messagetext:state.newMessageText}],
-      };
-    }
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      return {
-        ...state,
-        newMessageText: action.newText
+        messages: [...state.messages, {messageId:4, messagetext:action.newMessageText}],
       };
     }
     default: return state;
@@ -40,11 +31,8 @@ const dialogsPageReducer = (state=initialState, action) => {
 };
 
 // actions creators
-export const UPDATE_NEW_MESSAGE_TEXT_CREATOR = (newText) => {
-  return {type:UPDATE_NEW_MESSAGE_TEXT, newText:newText};
-};
-export const SEND_MESSAGE_CREATOR = () => {
-  return {type:SEND_MESSAGE};
+export const ADD_MESSAGE_CREATOR = (newMessageText) => {
+  return {type:ADD_MESSAGE, newMessageText};
 };
 
 export default dialogsPageReducer;

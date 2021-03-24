@@ -2,7 +2,6 @@ import {serverApi} from './../api/api'
 
 // actions constant
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -13,7 +12,6 @@ const initialState = {
             {postId:3, postText:'Why do you not answer?'},
             {postId:4, postText:'blablabla - blablabla'},
             ],
-    textNewPost: '',
     profile: null,
     status: '',
 };
@@ -24,15 +22,7 @@ export const profilePageReducer = (state=initialState, action) => {
     case ADD_POST: {
       return {
         ...state,
-        textNewPost: '',
-        posts: [...state.posts, {postId:5, postText:state.textNewPost}],
-      }
-    };
-
-    case UPDATE_NEW_POST_TEXT: {
-      return {
-        ...state,
-        textNewPost: action.newText
+        posts: [...state.posts, {postId:5, postText:action.newPostText}],
       }
     };
 
@@ -51,8 +41,7 @@ export const profilePageReducer = (state=initialState, action) => {
 };
 
 // actions creators
-export const ADD_POST_CREATOR = () => { return{type: ADD_POST} };
-export const UPDATE_NEW_POST_TEXT_CREATOR = (newText) => { return{type:UPDATE_NEW_POST_TEXT, newText:newText} };
+export const ADD_POST_CREATOR = (newPostText) => { return{type: ADD_POST, newPostText} };
 const setUserProfile = (profile) => { return{type: SET_USER_PROFILE, profile} };
 const setStatus = (status) => { return{type: SET_STATUS, status} };
 
@@ -80,7 +69,6 @@ export const updateStatus = (status) => {
     serverApi.updateStatus(status)
     .then(response =>{
       if (response.resultCode === 0) {
-         debugger;
         dispatch(setStatus(status));
       }
     })

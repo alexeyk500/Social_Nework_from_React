@@ -15,6 +15,20 @@ export const serverApi = {
     })
   },
 
+  login_me(email, password, rememberMe=false) {
+    return instanceAxios.post(`auth/login`, {email, password, rememberMe})
+    .then(response =>{
+      return response.data
+    })
+  },
+
+  logout_me() {
+    return instanceAxios.delete(`auth/login`)
+    .then(response =>{
+      return response.data
+    })
+  },
+
   getUsers(pageNum, pageSize) {
     return instanceAxios.get(`users?page=${pageNum}&count=${pageSize}`)
     .then(response =>{

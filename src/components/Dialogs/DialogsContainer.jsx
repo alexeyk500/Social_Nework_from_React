@@ -3,7 +3,7 @@ import Dialogs from './Dialogs';
 import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {SEND_MESSAGE_CREATOR, UPDATE_NEW_MESSAGE_TEXT_CREATOR} from './../../redux/dialogsPage-reducer';
+import {ADD_MESSAGE_CREATOR} from './../../redux/dialogsPage-reducer';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
@@ -28,23 +28,16 @@ const mapStateToProps = (state) =>{
                                                       <Message messageText={message.messagetext} key={message.id}/>
                                                       </li>)
   );
-  // Получаем текст вводимого сообщения для texearea
-  const newMessageText = state.dialogsPage.newMessageText;
-  return {dialogsElements, messagesElements, newMessageText}
+  return {dialogsElements, messagesElements}
 };
 
 // Функция для передачи колбэков в компоненту
 const mapDispatchToProps = (dispatch) =>{
   // Обработчик нажатия на кнопку Send
-  const onSendMesageButtonClick = () => {
-    dispatch(SEND_MESSAGE_CREATOR());
+  const onSendMesageButtonClick = (newMessageText) => {
+    dispatch(ADD_MESSAGE_CREATOR(newMessageText));
   };
-  // Обработчик ввода в textarea
-  const onChangeNewMessageText = (e) => {
-    const NewMessageText = e.target.value;
-    dispatch(UPDATE_NEW_MESSAGE_TEXT_CREATOR(NewMessageText));
-  };
-  return {onSendMesageButtonClick:onSendMesageButtonClick, onChangeNewMessageText:onChangeNewMessageText}
+  return {onSendMesageButtonClick:onSendMesageButtonClick}
 };
 
 export default compose(

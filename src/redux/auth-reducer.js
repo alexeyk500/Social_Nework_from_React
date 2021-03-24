@@ -36,7 +36,8 @@ export const authReducer = (state=initialState, action) => {
 };
 
 // actions creators
-const setAuthUsersData = (id, email, login)  => ({type:SET_USER_DATA, userData: {id, email, login}});
+const setAuthUsersData = (id, email, login, isAuthoraised)  => ({
+  type:SET_USER_DATA, userData: {id, email, login, isAuthoraised}});
 
 //thunk
 export const setAuthoraisedUsersData = () => {
@@ -44,7 +45,27 @@ export const setAuthoraisedUsersData = () => {
     serverApi.authoraise_me().then(response =>{
       if (response.resultCode === 0) {
         let {id, login, email} = response.data;
-        dispatch(setAuthUsersData(id, email, login));
+        dispatch(setAuthUsersData(id, email, login, true));
+      }
+    })
+  }
+};
+
+export const login = (email, password, rememberMe) => {
+  return(dispatch) => {
+    serverApi.login_me(email, password, rememberMe).then(response =>{
+      if (response.resultCode === 0) {
+        dispatch(setAuthoraisedUsersData());
+      }
+    })
+  }
+};
+
+export const logout = () => {
+  return(dispatch) => {
+    serverApi.logout_me().then(response =>{
+      if (response.resultCode === 0) {
+        dispatch(setAuthoraisedUsersData(null, null, null, false));
       }
     })
   }
