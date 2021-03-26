@@ -10,6 +10,7 @@ import { Redirect } from 'react-router-dom';
 const maxLength35 = maxLengthCreator(35);
 
 const LoginForm = (props) => {
+  //debugger
   return (
     <form onSubmit={props.handleSubmit} className={classes.form_container}>
       <div>
@@ -18,22 +19,36 @@ const LoginForm = (props) => {
           name={"email"}
           placeholder={"Email"}
           validate={[required, maxLength35]}
+          className={classes.my_input}
         />
       </div>
       <div>
         <Field
           component={Input}
           name={"password"}
+          type={"password"}
           placeholder={"Password"}
           validate={[required, maxLength35]}
+          className={classes.my_input}
         />
       </div>
       <div>
-        <Field component={'input'} name={"rememberMe"} type={"checkbox"} />{" "}
+        <Field
+          component={'input'}
+          name={"rememberMe"}
+          type={"checkbox"}
+          className={classes.my_input} />{" "}
         remember me
       </div>
+      { props.error &&
+        <div className={classes.errorContainer}>
+          <div className={classes.errorSign}>
+            {props.error}
+          </div>
+        </div>
+      }
       <div>
-        <button>Login</button>
+        <button className={classes.buttonLogin}>Login</button>
       </div>
     </form>
   );

@@ -9,9 +9,14 @@ const Header = (props) => {
       <img className={classes.logoImg} src={logo} alt="this is logo" />
       <span className={classes.title}>Lloret de Mar Private Social Nework</span>
       <div className={classes.loginBlock}>
-        { props.isAuthorised ?
-            <span className={classes.loginText}>{props.login}</span>
-            : <NavLink className={classes.loginNavLink} to='\login'>Login</NavLink>
+        { props.isAuthorised
+          ? <div>
+              <span className={classes.loginText}>{props.login}</span>
+              <button
+                className={classes.buttonLogout}
+                onClick={props.logout}>logout</button>
+            </div>
+            : <NavLink className={classes.loginNavLink} to={'\login'}>Login</NavLink>
         }
       </div>
     </header>

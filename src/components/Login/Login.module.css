@@ -15,4 +15,35 @@
   padding-left: 30px;
 }
 
+.my_input {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.errorContainer {
+  width: 37%;
+}
+
+.errorSign {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 28px;
+  color: #f7be02;
+  background-color: red;
+  border: solid #f7be02 3px;
+  border-radius: 10px;
+}
+
+.buttonLogin {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #f7be02;
+  background-color:#267e6b;
+  border-radius: 10px;
+  border: solid #f7be02 1px;
+}
+
 

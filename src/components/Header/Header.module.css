@@ -33,3 +33,15 @@
   font-size: 36px;
   color: #7aff81;
 }
+
+.buttonLogout {
+  margin-right: 30px;
+  margin-left: 30px;
+  padding: 10px 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #5bfd4c;
+  background-color: #0a33e6;
+  border-radius: 10px;
+  border: solid #5bfd4c 1px;
+}

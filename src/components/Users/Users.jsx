@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Users.module.css';
-import {serverApi} from './../../api/api';
 import logoAvatar from './../../assets/img/user.png';
 import { NavLink } from 'react-router-dom';
 
@@ -81,23 +80,3 @@ let Users = (props) => {
 }
 
 export default Users;
-
-
-
-// props.setFollowingInProgress(true, user.id);
-                      // serverApi.unfollowUser(user.id)
-                      // .then(data =>{
-                      //   if (data.resultCode === 0) {
-                      //     props.unfollowStatus(user.id)
-                      //   }
-                      //   props.setFollowingInProgress(false, user.id);
-                      // })
-
-// props.setFollowingInProgress(true, user.id);
-                    // serverApi.followUser(user.id)
-                    //   .then(data =>{
-                    //     if (data.resultCode === 0) {
-                    //       props.followStatus(user.id)
-                    //     }
-                    //     props.setFollowingInProgress(false, user.id);
-                    //   })

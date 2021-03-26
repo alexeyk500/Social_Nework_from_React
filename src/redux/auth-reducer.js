@@ -1,4 +1,5 @@
 import {serverApi} from './../api/api'
+import {stopSubmit} from "redux-form";
 
 // actions constant
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -28,7 +29,7 @@ export const authReducer = (state=initialState, action) => {
   switch(action.type) {
     case SET_USER_DATA: {
       return {
-        ...state, ...action.userData, isAuthoraised: true
+        ...state, ...action.userData
       }
     };
     default: return state;
@@ -42,7 +43,7 @@ const setAuthUsersData = (id, email, login, isAuthoraised)  => ({
 //thunk
 export const setAuthoraisedUsersData = () => {
   return(dispatch) => {
-    serverApi.authoraise_me().then(response =>{
+    return serverApi.authoraise_me().then(response =>{
       if (response.resultCode === 0) {
         let {id, login, email} = response.data;
         dispatch(setAuthUsersData(id, email, login, true));
@@ -56,6 +57,9 @@ export const login = (email, password, rememberMe) => {
     serverApi.login_me(email, password, rememberMe).then(response =>{
       if (response.resultCode === 0) {
         dispatch(setAuthoraisedUsersData());
+      } else {
+        const error_message = response.messages.length > 0 ? response.messages[0] : 'Some other Error'
+        dispatch(stopSubmit('login',{_error: error_message}));
       }
     })
   }
@@ -65,7 +69,7 @@ export const logout = () => {
   return(dispatch) => {
     serverApi.logout_me().then(response =>{
       if (response.resultCode === 0) {
-        dispatch(setAuthoraisedUsersData(null, null, null, false));
+        dispatch(setAuthUsersData(null, null, null, false));
       }
     })
   }
