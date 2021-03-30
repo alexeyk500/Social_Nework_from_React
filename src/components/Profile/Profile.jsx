@@ -4,6 +4,7 @@ import classes from './Profile.module.css';
 import UserDescription from './UserDescription/UserDescription';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import MyPostContainer from './MyPost/MyPostContainer';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const Profile = (props) => {
   return (
@@ -12,7 +13,8 @@ const Profile = (props) => {
         <img src={beach} alt="this is Lloret beach" />
       </div>
       <UserDescription profile={props.profile} />
-      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+      {/* <ProfileStatus status={props.status} updateStatus={props.updateStatus}/> */}
+      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
       <MyPostContainer />
     </div>
   )

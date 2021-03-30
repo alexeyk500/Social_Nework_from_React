@@ -1,0 +1,19 @@
+.userTitle {
+  margin-top: 25px;
+  padding-left: 25px;
+  margin-bottom: 25px;
+  font-size: 35px;
+  color:rgb(157, 192, 88)
+}
+
+.numPage {
+  margin-right: 10px;
+  font-size: 32px;
+}
+
+.selectedPage {
+  margin-right: 10px;
+  color:blue;
+  font-size: 40px;
+  font-weight: 600;
+}

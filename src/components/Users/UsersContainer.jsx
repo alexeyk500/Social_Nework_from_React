@@ -6,7 +6,7 @@ import {followStatus, unfollowStatus, setUsers,
         getUsers, follow, unfollow} from './../../redux/userPage-reducer';
 import Users from './Users';
 import Preloader from './../Common/Preloader/Preloader';
-import {getPageUsers, getPageSize, getTotalUsersCount,
+import {getPageUsersSuper, getPageSize, getTotalUsersCount,
         getCurrentPage, getIsFetching, getIsFollowingInProgress} from './../../redux/userPage-selectors';
 
 class UsersAPI extends React.Component {
@@ -41,7 +41,7 @@ class UsersAPI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: getPageUsers(state),
+    users: getPageUsersSuper(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),

@@ -1,9 +1,9 @@
 import {serverApi} from './../api/api'
 
 // actions constant
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'PROFILE-PAGE-ADD-POST';
+const SET_USER_PROFILE = 'PROFILE-PAGE-SET_USER_PROFILE';
+const SET_STATUS = 'PROFILE-PAGE-SET_STATUS';
 
 // Инициализационное состояние
 const initialState = {
@@ -47,32 +47,58 @@ const setStatus = (status) => { return{type: SET_STATUS, status} };
 
 //thunk
 export const getUserProfile = (userId) => {
-  return (dispatch) => {
-    serverApi.getProfile(userId)
-    .then(profile =>{
-      dispatch(setUserProfile(profile));
-    })
+  return async (dispatch) => {
+    const profile = await serverApi.getProfile(userId)
+    dispatch(setUserProfile(profile));
   }
 };
 
 export const getStatus = (userId) => {
-  return (dispatch) => {
-    serverApi.getStatus(userId)
-    .then(response =>{
-      dispatch(setStatus(response));
-    })
+  return async (dispatch) => {
+    const response = await serverApi.getStatus(userId)
+    dispatch(setStatus(response));
   }
 };
 
 export const updateStatus = (status) => {
-  return (dispatch) => {
-    serverApi.updateStatus(status)
-    .then(response =>{
-      if (response.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
-    })
+  return async(dispatch) => {
+    const response = await serverApi.updateStatus(status)
+    if (response.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
   }
 };
+
+
+
+
+// export const getUserProfile = (userId) => {
+//   return (dispatch) => {
+//     serverApi.getProfile(userId)
+//     .then(profile =>{
+//       dispatch(setUserProfile(profile));
+//     })
+//   }
+// };
+
+// export const getStatus = (userId) => {
+//   return (dispatch) => {
+//     serverApi.getStatus(userId)
+//     .then(response =>{
+//       dispatch(setStatus(response));
+//     })
+//   }
+// };
+
+// export const updateStatus = (status) => {
+//   return (dispatch) => {
+//     serverApi.updateStatus(status)
+//     .then(response =>{
+//       if (response.resultCode === 0) {
+//         dispatch(setStatus(status));
+//       }
+//     })
+//   }
+// };
 
 export default profilePageReducer;

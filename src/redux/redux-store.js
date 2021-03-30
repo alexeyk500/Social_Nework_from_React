@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import profilePageReducer from './profilePage-reducer';
 import dialogsPageReducer from './dialogsPage-reducer';
 import usersPageReducer   from './userPage-reducer';
@@ -16,7 +16,12 @@ const reducers = combineReducers ({
   app: appReducer,
 });
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+// Подключение state к расширению ReduxDevTools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+// Оригинальное подключение State
+//const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 

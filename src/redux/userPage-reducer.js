@@ -100,40 +100,34 @@ export const setFollowingInProgress = (isFetching, userId) => {return {type:FOLL
 
 //thunks
 export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setIsFetching(true));
-    serverApi.getUsers(currentPage, pageSize)
-    .then(data =>{
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    })
+    const data = await serverApi.getUsers(currentPage, pageSize)
+    dispatch(setIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
   }
 };
 
 export const follow = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setFollowingInProgress(true, userId));
-    serverApi.unfollowUser(userId)
-    .then(data =>{
-      if (data.resultCode === 0) {
-        dispatch(unfollowStatus(userId))
-      }
-      dispatch(setFollowingInProgress(false, userId));
-    })
+    const data = await serverApi.unfollowUser(userId)
+    if (data.resultCode === 0) {
+      dispatch(unfollowStatus(userId))
+    }
+    dispatch(setFollowingInProgress(false, userId));
   }
 };
 
 export const unfollow = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setFollowingInProgress(true, userId));
-    serverApi.followUser(userId)
-    .then(data =>{
-      if (data.resultCode === 0) {
-        dispatch(followStatus(userId))
-      }
-      dispatch(setFollowingInProgress(false, userId));
-    })
+    const data = await serverApi.followUser(userId);
+    if (data.resultCode === 0) {
+      dispatch(followStatus(userId))
+    }
+    dispatch(setFollowingInProgress(false, userId));
   }
 };
 

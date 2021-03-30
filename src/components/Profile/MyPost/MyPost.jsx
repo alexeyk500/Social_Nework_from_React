@@ -22,7 +22,7 @@ const NewMyPostForm = (props) => {
   )
 };
 
-const MyPost = (props) => {
+const MyPost = React.memo((props) => {
   const postsElements = props.posts.map(post=>(<Post text ={post.postText} key={post.id}/>));
   const submitNewMyPost = (value) => {
     props.addNewPost(value.newPostText)
@@ -40,7 +40,7 @@ const MyPost = (props) => {
       </div>
     </div>
   )
-};
+});
 
 const NewMyPostReduxForm = reduxForm({
   form: 'newMyPostForm'

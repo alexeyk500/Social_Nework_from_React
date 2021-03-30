@@ -1,6 +1,15 @@
-export const getPageUsers = (state) => {
+import { createSelector } from "reselect";
+
+// примитивный селектор
+const getPageUsers = (state) => {
   return state.usersPage.users
 };
+
+// Демо сложного селектора из библиотеки reselect
+export const getPageUsersSuper = createSelector(getPageUsers, (pageUser) => {
+  // что-то делаем с pageUser
+  return pageUser;
+})
 
 export const getPageSize = (state) => {
   return state.usersPage.pageSize
