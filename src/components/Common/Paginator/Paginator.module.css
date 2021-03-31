@@ -17,3 +17,13 @@
   font-size: 40px;
   font-weight: 600;
 }
+
+.userButton {
+  margin: 10px 15px;
+  padding: 10px 20px;
+  font-size: 24px;
+  color:rgb(40, 77, 77);
+  background-color:rgb(157, 192, 88);
+  border:none;
+  border-radius: 12px;
+}

@@ -2,13 +2,14 @@ import React from 'react';
 import classes from './Users.module.css';
 import logoAvatar from './../../assets/img/user.png';
 import { NavLink } from 'react-router-dom';
-import Paginator from '../Common/Paginator/Paginator'
+//import Paginator from '../Common/Paginator/Paginator'
+import PaginatorWithHooks from '../Common/Paginator/PaginatorWithHooks'
 
 let Users = (props) => {
 
   return (
     <div>
-      <Paginator
+      < PaginatorWithHooks
         totalUsersCount={props.totalUsersCount}
         pageSize={props.pageSize}
         onChangeCurentPage={props.onChangeCurentPage}
